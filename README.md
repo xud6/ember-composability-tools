@@ -6,7 +6,7 @@ ember-composability-tools 0.0.x
 
 This addon intends to provide helpers for building a somewhat different kind of components, i.e components which primary goal isn't to render DOM.
 
-* Ember.js v3.12 or above
+* Ember.js v3.16 or above
 * Ember CLI v2.13 or above
 * Node.js v10 or above
 
