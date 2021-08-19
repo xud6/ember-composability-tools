@@ -24,6 +24,8 @@ module.exports = {
     'ember/no-new-mixins': 'off',
     'ember/require-computed-property-dependencies': 'off',
     'ember/require-return-from-computed': 'off',
+    'ember/no-classic-components': 'off',
+    'ember/no-classic-classes': 'off',
   },
   overrides: [
     // node files
