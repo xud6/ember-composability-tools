@@ -1,6 +1,5 @@
 import Mixin from '@ember/object/mixin';
 import { computed } from '@ember/object';
-import { tryInvoke } from '@ember/utils';
 import ParentMixin from './parent';
 
 export default Mixin.create({
@@ -22,8 +21,8 @@ export default Mixin.create({
 
   init() {
     this._super(...arguments);
-    tryInvoke(this, 'initParent');
-    tryInvoke(this, 'initChild');
+    this.initParent?.();
+    this.initChild?.();
   },
 
   initChild() {
@@ -34,8 +33,8 @@ export default Mixin.create({
     this._super(...arguments);
     if (!this._isComposableDestroying) {
       this._isComposableDestroying = true;
-      tryInvoke(this, 'willDestroyElementParent');
-      tryInvoke(this, 'willDestroyElementChild');
+      this.willDestroyElementParent?.();
+      this.willDestroyElementChild?.();
     }
   },
 
@@ -52,8 +51,8 @@ export default Mixin.create({
 
   destroySelfAndChildren() {
     // We may be a child-parent. Destroy children if we can.
-    tryInvoke(this, 'destroyChildren');
-    tryInvoke(this, 'willDestroyParent');
+    this.destroyChildren?.();
+    this.willDestroyParent?.();
     this._didInsert = false;
   },
 

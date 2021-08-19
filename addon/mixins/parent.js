@@ -1,12 +1,11 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
-import { tryInvoke } from '@ember/utils';
 
 export default Mixin.create({
   init() {
     this._super(...arguments);
-    tryInvoke(this, 'initParent');
-    tryInvoke(this, 'initChild');
+    this.initParent?.();
+    this.initChild?.();
   },
 
   initParent() {
@@ -19,7 +18,7 @@ export default Mixin.create({
     // If we are a top-level parent, we should start
     // the `didInsertParent` call chain, starting with ourselves
     if (!this.parentComponent) {
-      tryInvoke(this, 'didInsertParent');
+      this.didInsertParent?.();
       this._didInsert = true;
       this.invokeChildDidInsertHooks();
     }
@@ -29,8 +28,8 @@ export default Mixin.create({
     this._super(...arguments);
     if (!this._isComposableDestroying) {
       this._isComposableDestroying = true;
-      tryInvoke(this, 'willDestroyElementParent');
-      tryInvoke(this, 'willDestroyElementChild');
+      this.willDestroyElementParent?.();
+      this.willDestroyElementChild?.();
     }
   },
 
@@ -54,7 +53,7 @@ export default Mixin.create({
 
   destroySelfAndChildren() {
     this.destroyChildren();
-    tryInvoke(this, 'willDestroyParent');
+    this.willDestroyParent?.();
     this._didInsert = false;
   },
 
@@ -73,9 +72,9 @@ export default Mixin.create({
 
     // If parent already setup, setup child immediately
     if (this._didInsert && !childComponent._didInsert) {
-      tryInvoke(childComponent, 'didInsertParent');
+      childComponent.didInsertParent?.();
       childComponent._didInsert = true;
-      tryInvoke(childComponent, 'invokeChildDidInsertHooks');
+      childComponent.invokeChildDidInsertHooks?.();
     }
   },
 
@@ -84,7 +83,7 @@ export default Mixin.create({
 
     // If parent already setup, teardown child immediately
     if (childComponent._didInsert) {
-      tryInvoke(childComponent, 'destroySelfAndChildren');
+      childComponent.destroySelfAndChildren?.();
     }
   },
 });
