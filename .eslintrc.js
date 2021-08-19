@@ -26,6 +26,7 @@ module.exports = {
     'ember/require-return-from-computed': 'off',
     'ember/no-classic-components': 'off',
     'ember/no-classic-classes': 'off',
+    'ember/no-actions-hash': 'off',
   },
   overrides: [
     // node files
