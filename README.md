@@ -1,3 +1,5 @@
+ember-composability-tools 0.0.x
+
 # ember-composability-tools
 
 [![Build Status](https://travis-ci.org/miguelcobain/ember-composability-tools.svg)](https://travis-ci.org/miguelcobain/ember-composability-tools) [![Ember Observer Score](http://emberobserver.com/badges/ember-composability-tools.svg)](http://emberobserver.com/addons/ember-composability-tools) [![Discord](https://img.shields.io/discord/480462759797063690.svg?logo=discord)](https://discord.gg/zT3asNS)

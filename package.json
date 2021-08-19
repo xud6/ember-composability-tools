@@ -1,5 +1,5 @@
 {
-  "name": "ember-composability-tools",
+  "name": "@ember-paper-lite/ember-composability-tools",
   "version": "0.0.12",
   "description": "Helpers for building a somewhat different kind of components.",
   "keywords": [
@@ -7,9 +7,9 @@
     "composability",
     "utilities"
   ],
-  "repository": "https://github.com/miguelcobain/ember-composability-tools",
+  "repository": "https://github.com/xud6/ember-composability-tools",
   "license": "MIT",
-  "author": "Miguel Andrade <jmandrade0@gmail.com>",
+  "author": "xud6",
   "directories": {
     "doc": "doc",
     "test": "tests"
