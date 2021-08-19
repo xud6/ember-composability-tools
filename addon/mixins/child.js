@@ -4,7 +4,6 @@ import { tryInvoke } from '@ember/utils';
 import ParentMixin from './parent';
 
 export default Mixin.create({
-
   // This is intended as an escape hatch, but ideally you would
   // `{{yield` a child contextual component with `parentComponent=this`
   parentComponent: computed({
@@ -17,8 +16,8 @@ export default Mixin.create({
     },
 
     set(key, value) {
-      return this._parentComponent = value;
-    }
+      return (this._parentComponent = value);
+    },
   }),
 
   init() {
@@ -70,6 +69,5 @@ export default Mixin.create({
     if (parentComponent) {
       parentComponent.unregisterChild(this);
     }
-  }
-
+  },
 });

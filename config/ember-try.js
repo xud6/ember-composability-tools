@@ -54,9 +54,8 @@ module.exports = async function () {
           }),
         },
         npm: {
-          devDependencies: {
-          }
-        }
+          devDependencies: {},
+        },
       },
       {
         name: 'ember-classic',

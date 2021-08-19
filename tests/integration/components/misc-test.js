@@ -5,12 +5,15 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
-import { ParentMixin, ChildMixin } from '@ember-paper-lite/ember-composability-tools';
+import {
+  ParentMixin,
+  ChildMixin,
+} from '@ember-paper-lite/ember-composability-tools';
 
-module('Integration | Component | misc', function(hooks) {
+module('Integration | Component | misc', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     let parentComponent = Component.extend(ParentMixin, {});
     this.owner.register('component:parent-component', parentComponent);
 
@@ -18,8 +21,7 @@ module('Integration | Component | misc', function(hooks) {
     this.owner.register('component:child-component', childComponent);
   });
 
-  test('parent component without hooks doesn\'t error', async function(assert) {
-
+  test("parent component without hooks doesn't error", async function (assert) {
     await render(hbs`
       {{#parent-component}}
         <p>Block content</p>
@@ -29,8 +31,7 @@ module('Integration | Component | misc', function(hooks) {
     assert.ok(true);
   });
 
-  test('child component without hooks doesn\'t error', async function(assert) {
-
+  test("child component without hooks doesn't error", async function (assert) {
     await render(hbs`
       {{#parent-component}}
         {{#child-component}}
@@ -42,9 +43,9 @@ module('Integration | Component | misc', function(hooks) {
     assert.ok(true);
   });
 
-  test('child component with `shouldRegister=false` doesn\'t register to parent', async function(assert) {
-    let parentSpy = this.parentSpy = sinon.spy();
-    let childSpy = this.childSpy = sinon.spy();
+  test("child component with `shouldRegister=false` doesn't register to parent", async function (assert) {
+    let parentSpy = (this.parentSpy = sinon.spy());
+    let childSpy = (this.childSpy = sinon.spy());
 
     await render(hbs`
       {{#parent-component didInsertParent=parentSpy}}
@@ -55,10 +56,13 @@ module('Integration | Component | misc', function(hooks) {
 
     assert.ok(parentSpy.calledOnce, 'parent didInsertParent was called once');
     assert.ok(childSpy.calledOnce, 'child didInsertParent was called once');
-    assert.ok(parentSpy.calledBefore(childSpy), 'parent was called before child');
+    assert.ok(
+      parentSpy.calledBefore(childSpy),
+      'parent was called before child'
+    );
   });
 
-  test('init super is called only once per mixin', function(assert) {
+  test('init super is called only once per mixin', function (assert) {
     let customizedObject = EObject.extend({
       init() {
         this._super(...arguments);
@@ -75,19 +79,27 @@ module('Integration | Component | misc', function(hooks) {
         },
 
         set(key, value) {
-          return this._timesCalled = value;
-        }
-      })
+          return (this._timesCalled = value);
+        },
+      }),
     });
-    let parentObject = customizedObject.extend(ParentMixin, { });
+    let parentObject = customizedObject.extend(ParentMixin, {});
     let childObject = customizedObject.extend(ChildMixin, {
       parentComponent: null,
-      registerWithParent() {}
+      registerWithParent() {},
     });
     let parentInstance = parentObject.create();
     let childInstance = childObject.create();
 
-    assert.equal(parentInstance.timesCalled, 1, 'Should call parent init super wrapper only once');
-    assert.equal(childInstance.timesCalled, 1, 'Should call child init super wrapper only once');
+    assert.equal(
+      parentInstance.timesCalled,
+      1,
+      'Should call parent init super wrapper only once'
+    );
+    assert.equal(
+      childInstance.timesCalled,
+      1,
+      'Should call child init super wrapper only once'
+    );
   });
 });

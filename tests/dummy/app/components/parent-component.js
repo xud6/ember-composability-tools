@@ -10,5 +10,5 @@ export default Component.extend(ParentMixin, {
   willDestroyParent() {
     this._super(...arguments);
     console.log('willDestroyParent - parent'); // eslint-disable-line
-  }
+  },
 });

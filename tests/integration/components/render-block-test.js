@@ -8,21 +8,20 @@ import { RenderBlockMixin } from '@ember-paper-lite/ember-composability-tools';
 
 let component;
 
-module('Integration | Component | render block', function(hooks) {
+module('Integration | Component | render block', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     let renderBlockComponent = Component.extend(RenderBlockMixin, {
       init() {
         this._super(...arguments);
         component = this;
-      }
+      },
     });
     this.owner.register('component:render-block', renderBlockComponent);
   });
 
-  test('it renders and destroys', async function(assert) {
-
+  test('it renders and destroys', async function (assert) {
     await render(hbs`
       {{#render-block}}
         <p>Block content</p>
@@ -34,12 +33,20 @@ module('Integration | Component | render block', function(hooks) {
     });
 
     let destinationElement = component.destinationElement;
-    assert.equal(destinationElement.innerHTML.trim(), '<p>Block content</p>', 'document fragment holds DOM');
+    assert.equal(
+      destinationElement.innerHTML.trim(),
+      '<p>Block content</p>',
+      'document fragment holds DOM'
+    );
 
     run(() => {
       component.set('shouldRender', false);
     });
 
-    assert.equal(destinationElement.innerHTML, '', 'document fragment doesn\'t hold the DOM');
+    assert.equal(
+      destinationElement.innerHTML,
+      '',
+      "document fragment doesn't hold the DOM"
+    );
   });
 });

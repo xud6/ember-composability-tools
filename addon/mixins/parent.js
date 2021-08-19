@@ -3,7 +3,6 @@ import { A } from '@ember/array';
 import { tryInvoke } from '@ember/utils';
 
 export default Mixin.create({
-
   init() {
     this._super(...arguments);
     tryInvoke(this, 'initParent');
@@ -87,5 +86,5 @@ export default Mixin.create({
     if (childComponent._didInsert) {
       tryInvoke(childComponent, 'destroySelfAndChildren');
     }
-  }
+  },
 });
