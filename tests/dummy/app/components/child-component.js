@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import ChildMixin from '@ember-paper-lite/ember-composability-tools/mixins/child';
 
 export default Component.extend(ChildMixin, {
-  tagName: '',
   didInsertParent() {
     this._super(...arguments);
     console.log('didInsertParent - child'); // eslint-disable-line
