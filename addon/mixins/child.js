@@ -48,7 +48,7 @@ export default Mixin.create({
   shouldRegister: true,
 
   shouldRegisterToParent(/*parentComponent*/) {
-    return this.get('shouldRegister');
+    return this.shouldRegister;
   },
 
   destroySelfAndChildren() {
@@ -59,14 +59,14 @@ export default Mixin.create({
   },
 
   registerWithParent() {
-    let parentComponent = this.get('parentComponent');
+    let parentComponent = this.parentComponent;
     if (parentComponent && this.shouldRegisterToParent(parentComponent)) {
       parentComponent.registerChild(this);
     }
   },
 
   unregisterWithParent() {
-    let parentComponent = this.get('parentComponent');
+    let parentComponent = this.parentComponent;
     if (parentComponent) {
       parentComponent.unregisterChild(this);
     }

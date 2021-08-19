@@ -20,7 +20,12 @@ module.exports = {
   env: {
     browser: true
   },
-  rules: {},
+  rules: {
+    'ember/no-mixins': 'off',
+    'ember/no-new-mixins': 'off',
+    'ember/require-computed-property-dependencies': 'off',
+    'ember/require-return-from-computed': 'off',
+  },
   overrides: [
     // node files
     {

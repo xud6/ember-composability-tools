@@ -19,7 +19,7 @@ export default Mixin.create({
 
     // If we are a top-level parent, we should start
     // the `didInsertParent` call chain, starting with ourselves
-    if (!this.get('parentComponent')) {
+    if (!this.parentComponent) {
       tryInvoke(this, 'didInsertParent');
       this._didInsert = true;
       this.invokeChildDidInsertHooks();

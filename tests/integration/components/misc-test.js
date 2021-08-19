@@ -62,7 +62,7 @@ module('Integration | Component | misc', function(hooks) {
     let customizedObject = EObject.extend({
       init() {
         this._super(...arguments);
-        let timesCalled = this.get('timesCalled');
+        let timesCalled = this.timesCalled;
         this.set('timesCalled', timesCalled + 1);
       },
       timesCalled: computed({
@@ -87,7 +87,7 @@ module('Integration | Component | misc', function(hooks) {
     let parentInstance = parentObject.create();
     let childInstance = childObject.create();
 
-    assert.equal(parentInstance.get('timesCalled'), 1, 'Should call parent init super wrapper only once');
-    assert.equal(childInstance.get('timesCalled'), 1, 'Should call child init super wrapper only once');
+    assert.equal(parentInstance.timesCalled, 1, 'Should call parent init super wrapper only once');
+    assert.equal(childInstance.timesCalled, 1, 'Should call child init super wrapper only once');
   });
 });

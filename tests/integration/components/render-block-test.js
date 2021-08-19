@@ -33,7 +33,7 @@ module('Integration | Component | render block', function(hooks) {
       component.set('shouldRender', true);
     });
 
-    let destinationElement = component.get('destinationElement');
+    let destinationElement = component.destinationElement;
     assert.equal(destinationElement.innerHTML.trim(), '<p>Block content</p>', 'document fragment holds DOM');
 
     run(() => {

@@ -11,15 +11,20 @@ export default Mixin.create({
     return owner.lookup('service:fastboot');
   }),
   isFastBoot: computed('fastboot', function() {
-    return this.get('fastboot') && this.get('fastboot.isFastBoot');
+    if(this.fastboot){
+      if(this.fastboot.isFastBoot){
+        return true
+      }
+    }
+    return false
   }),
 
   destinationElementTag: 'div',
 
   // creates a document fragment that will hold the DOM
   destinationElement: computed(function() {
-    if (!this.get('isFastBoot')) {
-      return document.createElement(this.get('destinationElementTag'));
+    if (!this.isFastBoot) {
+      return document.createElement(this.destinationElementTag);
     }
   })
 });
