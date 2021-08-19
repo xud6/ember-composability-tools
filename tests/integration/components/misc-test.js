@@ -5,7 +5,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
-import { ParentMixin, ChildMixin } from 'ember-composability-tools';
+import { ParentMixin, ChildMixin } from '@ember-paper-lite/ember-composability-tools';
 
 module('Integration | Component | misc', function(hooks) {
   setupRenderingTest(hooks);

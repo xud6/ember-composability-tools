@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import ParentMixin from 'ember-composability-tools/mixins/parent';
+import ParentMixin from '@ember-paper-lite/ember-composability-tools/mixins/parent';
 
 export default Component.extend(ParentMixin, {
   didInsertParent() {
